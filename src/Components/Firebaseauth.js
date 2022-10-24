@@ -1,3 +1,4 @@
+import { async } from '@firebase/util';
 import React, { useEffect, useState } from 'react'
 import { auth } from '../firebase';
 
@@ -21,6 +22,14 @@ function Firebaseauth() {
         }
     },[])
 
+    let logout = async() =>{
+        await auth.signOut();
+    }
+
+    let signin = async() => {
+        await auth.signInWithEmailAndPassword(email,password);
+    }
+
     return (
         <>
             {
@@ -30,11 +39,12 @@ function Firebaseauth() {
                         <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
                         <label htmlFor="pasword">Password</label>
                         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                        <button onClick={createUser}>Create</button>
+                        <button onClick={signin}>Signin</button>
                     </div>
                  :
                 <div>
                     {user.email}
+                    <button onClick={logout}>Logout</button>
                 </div>
         }
 
