@@ -33,6 +33,11 @@ function Firestore() {
         })
     }
 
+    let deleteUser = async()=>{
+        let uid = 'XWSvaq9hHfSKosq5AQAE';
+        await database.users.doc(uid).delete();
+    }
+
     return (
         <>
             <div>
@@ -41,6 +46,7 @@ function Firestore() {
                 <label htmlFor="age" >Age</label>
                 <input type="number" value={age} onChange = {(e) => setAge(e.target.value)}/>
                 <button onClick={update}>Create</button>
+                <button onClick={deleteUser}>Delete</button>
             </div>
 
         </>
