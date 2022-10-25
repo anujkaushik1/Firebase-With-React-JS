@@ -1,3 +1,4 @@
+import { async } from '@firebase/util';
 import React, { useState, useEffect } from 'react'
 import { database } from '../firebase';
 
@@ -13,6 +14,16 @@ function Firestore() {
 
         console.log(res);
     }
+
+    useEffect(async()=>{
+
+        // let uid = 'XWSvaq9hHfSKosq5AQAE';
+        // // let data = await database.users.doc(uid).get();
+        // // console.log(data.data());
+
+        let data = await database.users.get();
+        data.forEach((obj)=> console.log(obj.data()))
+    })
 
     return (
         <>
