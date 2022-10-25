@@ -15,15 +15,23 @@ function Firestore() {
         console.log(res);
     }
 
-    useEffect(async()=>{
+    // useEffect(async()=>{
 
-        // let uid = 'XWSvaq9hHfSKosq5AQAE';
-        // // let data = await database.users.doc(uid).get();
-        // // console.log(data.data());
+    //     // // let uid = 'XWSvaq9hHfSKosq5AQAE';
+    //     // // // let data = await database.users.doc(uid).get();
+    //     // // // console.log(data.data());
 
-        let data = await database.users.get();
-        data.forEach((obj)=> console.log(obj.data()))
-    })
+    //     // let data = await database.users.get();
+    //     // data.forEach((obj)=> console.log(obj.data()))
+    // })
+
+    let update = async () =>{
+        let uid = 'XWSvaq9hHfSKosq5AQAE';
+        await database.users.doc(uid).update({
+            name : name,
+            age : age
+        })
+    }
 
     return (
         <>
@@ -32,7 +40,7 @@ function Firestore() {
                 <input type="text" value={name} onChange = {(e) => setName(e.target.value)}/>
                 <label htmlFor="age" >Age</label>
                 <input type="number" value={age} onChange = {(e) => setAge(e.target.value)}/>
-                <button onClick={createUserDB}>Create</button>
+                <button onClick={update}>Create</button>
             </div>
 
         </>
